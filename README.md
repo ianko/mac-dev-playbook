@@ -53,12 +53,8 @@ You can filter which part of the provisioning process to run by specifying a set
 
 It's my hope that I can get the rest of these things wrapped up into Ansible playbooks soon, but for now, these steps need to be completed manually (assuming you already have Xcode and Ansible installed, and have run this playbook).
 
-  1. Set JJG-Term as the default Terminal theme (it's installed, but not set as default automatically).
-  3. Install all the apps that aren't yet in this setup (see below).
-  4. Remap Caps Lock to Escape (requires macOS Sierra 10.12.1+).
-  5. Set trackpad tracking rate.
-  6. Set mouse tracking rate.
-  7. Configure extra Mail and/or Calendar accounts (e.g. Google, Exchange, etc.).
+  1. Install all the apps that aren't yet in this setup (see below).
+  2. Configure extra Mail and/or Calendar accounts (e.g. Google, Exchange, etc.).
 
 ### Configuration to be added:
 

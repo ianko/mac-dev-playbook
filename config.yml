@@ -27,36 +27,39 @@ dockitems_persist:
   - name: "Safari"
     path: "/Applications/Safari.app/"
     pos: 2
+  - name: "Brave Browser"
+    path: "/Applications/Brave Browser.app/"
+    pos: 3
   - name: "Spark"
     path: "/Applications/Spark.app/"
-    pos: 3
+    pos: 4
   - name: "Slack"
     path: "/Applications/Slack.app/"
-    pos: 4
+    pos: 5
   - name: "Visual Studio Code"
     path: "/Applications/Visual Studio Code.app/"
-    pos: 5
+    pos: 6
   - name: "Fork"
     path: "/Applications/Fork.app/"
-    pos: 6
+    pos: 7
+  - name: "TablePlus"
+    path: "/Applications/TablePlus.app/"
+    pos: 8
   - name: "iTerm"
     path: "/Applications/iTerm.app/"
-    pos: 7
+    pos: 9
+  - name: "Calendar"
+    path: "/System/Applications/Calendar.app"
+    pos: 10
   - name: "Messages"
     path: "/System/Applications/Messages.app"
-    pos: 8
-  - name: "Signal"
-    path: "/Applications/Signal.app/"
-    pos: 9
+    pos: 11
   - name: "Spotify"
     path: "/Applications/Spotify.app/"
-    pos: 10
-  - name: "Plexamp"
-    path: "/Applications/Plexamp.app"
-    pos: 11
-  - name: "Whatsapp"
-    path: "/Applications/Whatsapp.app/"
     pos: 12
+  - name: "Notion"
+    path: "/Applications/Notion.app/"
+    pos: 13
 
 configure_sudoers: false
 sudoers_custom_config: ""

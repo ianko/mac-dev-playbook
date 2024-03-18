@@ -45,32 +45,115 @@ You can filter which part of the provisioning process to run by specifying a set
 
     ansible-playbook main.yml -K --tags "dotfiles,homebrew"
 
-## Future additions
+## Overriding Defaults
 
-### Things that still need to be done manually
+Not everyone's development environment and preferred software configuration is the same.
 
-It's my hope that I can get the rest of these things wrapped up into Ansible playbooks soon, but for now, these steps need to be completed manually (assuming you already have Xcode and Ansible installed, and have run this playbook).
+You can override any of the defaults configured in `default.config.yml` by creating a `config.yml` file and setting the overrides in that file. For example, you can customize the installed packages and apps with something like:
 
-  1. Install all the apps that aren't yet in this setup (see below).
-  2. Configure extra Mail and/or Calendar accounts (e.g. Google, Exchange, etc.).
+```yaml
+homebrew_installed_packages:
+  - cowsay
+  - git
+  - go
 
-### Configuration to be added:
+mas_installed_apps:
+  - { id: 443987910, name: "1Password" }
+  - { id: 498486288, name: "Quick Resizer" }
+  - { id: 557168941, name: "Tweetbot" }
+  - { id: 497799835, name: "Xcode" }
 
-  - I have vim configuration in the repo, but I still need to add the actual installation:
-    ```
-    mkdir -p ~/.vim/autoload
-    mkdir -p ~/.vim/bundle
-    cd ~/.vim/autoload
-    curl https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim > pathogen.vim
-    cd ~/.vim/bundle
-    git clone git://github.com/scrooloose/nerdtree.git
-    ```
+composer_packages:
+  - name: hirak/prestissimo
+  - name: drush/drush
+    version: '^8.1'
+
+gem_packages:
+  - name: bundler
+    state: latest
+
+npm_packages:
+  - name: webpack
+
+pip_packages:
+  - name: mkdocs
+
+configure_dock: true
+dockitems_remove:
+  - Launchpad
+  - TV
+dockitems_persist:
+  - name: "Sublime Text"
+    path: "/Applications/Sublime Text.app/"
+    pos: 5
+```
+
+Any variable can be overridden in `config.yml`; see the supporting roles' documentation for a complete list of available variables.
+
+## Included Applications / Configuration (Default)
+
+Applications (installed with Homebrew Cask):
+
+  - [ChromeDriver](https://sites.google.com/chromium.org/driver/)
+  - [Docker](https://www.docker.com/)
+  - [Dropbox](https://www.dropbox.com/)
+  - [Firefox](https://www.mozilla.org/en-US/firefox/new/)
+  - [Google Chrome](https://www.google.com/chrome/)
+  - [Handbrake](https://handbrake.fr/)
+  - [Homebrew](http://brew.sh/)
+  - [LICEcap](http://www.cockos.com/licecap/)
+  - [nvALT](http://brettterpstra.com/projects/nvalt/)
+  - [Sequel Ace](https://sequel-ace.com) (MySQL client)
+  - [Slack](https://slack.com/)
+  - [Sublime Text](https://www.sublimetext.com/)
+  - [Transmit](https://panic.com/transmit/) (S/FTP client)
+
+Packages (installed with Homebrew):
+
+  - autoconf
+  - bash-completion
+  - doxygen
+  - gettext
+  - gifsicle
+  - git
+  - gh
+  - go
+  - gpg
+  - httpie
+  - iperf
+  - libevent
+  - sqlite
+  - nmap
+  - node
+  - nvm
+  - php
+  - ssh-copy-id
+  - cowsay
+  - readline
+  - openssl
+  - pv
+  - wget
+  - wrk
+  - zsh-history-substring-search
+
+My [dotfiles](https://github.com/geerlingguy/dotfiles) are also installed into the current user's home directory, including the `.osx` dotfile for configuring many aspects of macOS for better performance and ease of use. You can disable dotfiles management by setting `configure_dotfiles: no` in your configuration.
+
+Finally, there are a few other preferences and settings added on for various apps and services.
+
+## Full / From-scratch setup guide
+
+Since I've used this playbook to set up something like 20 different Macs, I decided to write up a full 100% from-scratch install for my own reference (everyone's particular install will be slightly different).
+
+You can see my full from-scratch setup document here: [full-mac-setup.md](full-mac-setup.md).
 
 ## Testing the Playbook
 
-Many people have asked me if I often wipe my entire workstation and start from scratch just to test changes to the playbook. Nope! Instead, I posted instructions for how I build a [Mac OS X VirtualBox VM](https://github.com/geerlingguy/mac-osx-virtualbox-vm), on which I can continually run and re-run this playbook to test changes and make sure things work correctly.
+Many people have asked me if I often wipe my entire workstation and start from scratch just to test changes to the playbook. Nope! This project is [continuously tested on GitHub Actions' macOS infrastructure](https://github.com/geerlingguy/mac-dev-playbook/actions?query=workflow%3ACI).
 
-Additionally, this project is [continuously tested on GitHub Actions' macOS infrastructure](https://github.com/geerlingguy/mac-dev-playbook/actions?query=workflow%3ACI).
+You can also run macOS itself inside a VM, for at least some of the required testing (App Store apps and some proprietary software might not install properly). I currently recommend:
+
+  - [UTM](https://mac.getutm.app)
+  - [Tart](https://github.com/cirruslabs/tart)
 
 ## Ansible for DevOps
 
